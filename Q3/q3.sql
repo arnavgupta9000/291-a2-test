@@ -1,0 +1,1 @@
+ select distinct bid, email from members m, borrowings b, waitlists w, books bo where end_date not null and m.email = b.member and julianday(b.end_date) - julianday(b.start_date) > 14 and (priority < 5 or priority is null)  and bo.book_id = b.book_id;

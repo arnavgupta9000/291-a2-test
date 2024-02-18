@@ -1,0 +1,1 @@
+select distinct bid, email, end_date from borrowings b, members m, books bo where m.faculty = 'CS' and (lower(bo.author) like '%john%' or lower(bo.author) like '%marry%') and b.book_id = bo.book_id and b.member = m.email;
