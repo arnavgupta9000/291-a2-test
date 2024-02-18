@@ -1,0 +1,1 @@
+select email, count(pid) as total_penalties, sum(case when p.paid_amount >= p.amount then 1 else 0 end) as PENALITIES, sum(case when p.paid_amount >= p.amount then p.amount else 0 end) as PAID from members m, borrowings b, penalties p where m.email = b.member and p.bid = b.bid group by email having total_penalties > 0;
