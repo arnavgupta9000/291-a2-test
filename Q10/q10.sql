@@ -1,1 +1,1 @@
-select distinct email from borrowings b, members m, book_info info where m.email = b.member and info.book_id = b.book_id group by m.email having count(*) = sum(case when info.rating > 3.5 and info.reqcnt > (select avg (reqcnt) from book_info) then 1 else 0 end);
+select distinct email from borrowings b, members m, book_info info where m.email = b.member and info.book_id = b.book_id group by email having count(*) = sum(case when info.rating > 3.5 and info.reqcnt > (select avg (reqcnt) from book_info) then 1 else 0 end);
