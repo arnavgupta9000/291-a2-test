@@ -1,1 +1,1 @@
-select distinct bo.book_id, title, author,  (select count(*)from borrowings b where b.book_id = bo.book_id) as borrow, ifnull((select max(b.start_date) from borrowings b where b.book_id = bo.book_id), null) as start from books bo, borrowings b where pyear > 2001;
+select distinct bo.book_id, title, avg(rating) as aver from reviews r, books bo where r.book_id = bo.book_id group by bo.book_id, title having count(*) >=2 order by aver desc limit 3;
