@@ -1,1 +1,1 @@
-select distinct bo.book_id, title, (select count(*)from borrowings b where b.book_id = bo.book_id) as amount from borrowings b, books bo where pyear<= 2015 and amount * 2 > (select count(*) from waitlists w where w.book_id = bo.book_id) and exists (select 1 where b.book_id = bo.book_id);
+select distinct bo.book_id, title, (select count(*)from borrowings b where b.book_id = bo.book_id) as amount from borrowings b, books bo where pyear<= 2015 and amount*2 >= (select count(*) from waitlists w where w.book_id = bo.book_id) and exists (select 1 where b.book_id = bo.book_id);
